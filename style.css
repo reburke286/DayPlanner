@@ -63,6 +63,8 @@ body {
     border-bottom-right-radius: 15px;
     background-color: #06AED5;
     color: white;
+    margin-top: 20px;
+    margin-left: -85px;
   }
   
   .saveBtn i:hover {
