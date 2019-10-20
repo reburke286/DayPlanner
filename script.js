@@ -1,17 +1,8 @@
-// The application displays timeblocks for standard business hours (9 a.m. to 5 p.m.).
-// Each timeblock contains an input field and save button.
-// Clicking a timeblock's "Save" button stores the input text in local storage, allowing the text to persist when the application is refreshed.
-// The current day is displayed at the top of the calendar.
-// Each timeblock is color coded to indicate whether it is in a past, present, or future hour.
-
-
 $(document).ready(function() {
 
     function renderCalenderEvents() {
         
-        //var Object to hold each textarea separately
         var inputObject = { 
-            //each value of the object
             nine: localStorage.getItem("nine"),
             ten: localStorage.getItem("ten"),
             eleven: localStorage.getItem("eleven"), 
@@ -22,26 +13,14 @@ $(document).ready(function() {
             four: localStorage.getItem("four"),
             five: localStorage.getItem("five"),
         } 
-        // variable that shows the object as any array so we can iterate through it
+        
         var keys = Object.keys(inputObject);
-        // for loop that cycles through the keys variable
         for (var i = 0; i < keys.length + 1; i++) {
-            // value within each textarea
             var textarea = $("textarea").eq(i);
-            // value of each index of the array
             var key = keys[i];
-            //variable to call the values of the object
             var value = inputObject[key];
-            //calls the different values into the different textareas, using the for loop 
             textarea.val(value);
         }
-
-
-        
-        //var input = localStorage.getItem("input");
-      
-
-      
      
     };
     
@@ -49,7 +28,6 @@ $(document).ready(function() {
   
 
     $(".btn").on("click", function(event) {
-        //event.preventDefault();
         
         var calendarInput = $(event.target).parent().siblings(".col-9").children().val();
         if ($(event.target).hasClass("nine")) {
@@ -72,158 +50,159 @@ $(document).ready(function() {
             localStorage.setItem("five", calendarInput)
         } ;
         
-        //  3a. which textarea is being saved  
-
-        //  3b. save to localstorage
-     
-    
-        //renderCalenderEvents();
         
     });
     var currentDay = moment().format("dddd");
     $("#currentDay").text(currentDay);
 
-    var currentTime = moment().format("h a")
-    // var compare = moment('2pm', 'ha')
-    console.log("look under me!");
-    console.log(moment(currentTime, 'h a'));
-    console.log(moment(currentTime, 'h a').isSame(twoPM, "hour"));
-    console.log(moment(currentTime, "h a").isBefore(nineAM, "hour"));
+    var currentTime = moment().format("HH");
+    var nine = "09"
+    var ten = "10"
+    var eleven = "11"
+    var twelve = "12"
+    var one = "13"
+    var two = "14"
+    var three = "15"
+    var four = "16"
+    var five = "17"
    
-    var nineAM = moment("9 am", "h a")
-    var tenAM = moment("10am", "h a")
-    var elevenAM = moment("11am", "h a")
-    var twelvePM = moment("12pm", "h a")
-    var onePM = moment("1pm", "h a")
-    var twoPM = moment("2pm", "h a")
-    var threePM = moment("3pm", "h a")
-    var fourPM = moment("4pm", "h a")
-    var fivePM = moment("5pm", "h a")
+    // NINE AM
+    if (currentTime < nine) {
+        console.log("is before");
+        $("#exampleFormControlTextarea1").addClass("future");
+      
+    }
+    else if (currentTime > nine) {
+        console.log("is after");
+        $("#exampleFormControlTextarea1").addClass("past");
+        
+    }
+    else if (currentTime === nine) {
+        console.log("is same");
+        $("#exampleFormControlTextarea1").addClass("present");
+    }
+    // TEN AM
+    if (currentTime < ten) {
+        console.log("is before");
+        $("#exampleFormControlTextarea2").addClass("future");
+      
+    }
+    else if (currentTime > ten) {
+        console.log("is after");
+        $("#exampleFormControlTextarea2").addClass("past");
+        
+    }
+    else if (currentTime === ten) {
+        console.log("is same");
+        $("#exampleFormControlTextarea2").addClass("present");
+    }
   
-    //two pm test
-    if (moment(currentTime, 'h a').isSame(twoPM, "hour") === true) {
+    // ELEVEN AM
+    if (currentTime < eleven) {
+        console.log("is before");
+        $("#exampleFormControlTextarea3").addClass("future");
+      
+    }
+    else if (currentTime > eleven) {
+        console.log("is after");
+        $("#exampleFormControlTextarea3").addClass("past");
+        
+    }
+    else if (currentTime === eleven) {
+        console.log("is same");
+        $("#exampleFormControlTextarea3").addClass("present");
+    }
+    // TWELVE PM
+    if (currentTime < twelve) {
+        console.log("is before");
+        $("#exampleFormControlTextarea4").addClass("future");
+      
+    }
+    else if (currentTime > twelve) {
+        console.log("is after");
+        $("#exampleFormControlTextarea4").addClass("past");
+        
+    }
+    else if (currentTime === twelve) {
+        console.log("is same");
+        $("#exampleFormControlTextarea4").addClass("present");
+    }
+    // ONE PM
+    if (currentTime < one) {
+        console.log("is before");
+        $("#exampleFormControlTextarea5").addClass("future");
+      
+    }
+    else if (currentTime > one) {
+        console.log("is after");
+        $("#exampleFormControlTextarea5").addClass("past");
+        
+    }
+    else if (currentTime === one) {
+        console.log("is same");
+        $("#exampleFormControlTextarea5").addClass("present");
+    }
+    // TWO PM
+    if (currentTime < two) {
+        console.log("is before");
+        $("#exampleFormControlTextarea6").addClass("future");
+      
+    }
+    else if (currentTime > two) {
+        console.log("is after");
+        $("#exampleFormControlTextarea6").addClass("past");
+        
+    }
+    else if (currentTime === two) {
+        console.log("is same");
         $("#exampleFormControlTextarea6").addClass("present");
     }
-    else if (moment(currentTime, "h a").isBefore(nineAM, "hour")) {
-           $("#exampleFormControlTextarea1").addClass("future");
+    // THREE PM
+    if (currentTime < three) {
+        console.log("is before");
+        $("#exampleFormControlTextarea7").addClass("future");
       
-
     }
-  
-
-
-    // Nine AM
-    // if (moment(currentTime, "h a").isBefore(nineAM, "hour") === true) {
-    //     console.log("is before");
-    //     $("#exampleFormControlTextarea1").addClass("future");
-      
-    // }
-    // else if (moment(currentTime).isAfter(nineAM, "hour") === true) {
-    //     console.log("is after");
-    //     $("#exampleFormControlTextarea1").addClass("past");
+    else if (currentTime > three) {
+        console.log("is after");
+        $("#exampleFormControlTextarea7").addClass("past");
         
-    // }
-    // else if (moment(currentTime).isSame(nineAM, "hour") === true) {
-    //     console.log("is same");
-    //     $("#exampleFormControlTextarea1").addClass("present");
-    // }
-    // TEN AM
-    // if (currentTime.isBefore(tenAM)) {
-    //     $("#exampleFormControlTextarea2").addClass("future")
-    // }
-    // else if (currentTime.isAfter(tenAM)) {
-    //     $("#exampleFormControlTextarea2").addClass("past")
-    // }
-    // else if (currentTime.isSame(tenAM)) {
-    //     $("#exampleFormControlTextarea2").addClass("present")
-    // }
-    // // ELEVEN AM
-    // if (currentTime.isBefore(elevenAM)) {
-    //     $("#exampleFormControlTextarea3").addClass("future")
-    // }
-    // else if (currentTime.isAfter(elevenAM)) {
-    //     $("#exampleFormControlTextarea3").addClass("past")
-    // }
-    // else if (currentTime.isSame(elevenAM)) {
-    //     $("#exampleFormControlTextarea3").addClass("present")
-    // }
-    // // TWELVE PM
-    // if (currentTime.isBefore(twelvePM)) {
-    //     $("#exampleFormControlTextarea4").addClass("future")
-    // }
-    // else if (currentTime.isAfter(twelvePM)) {
-    //     $("#exampleFormControlTextarea4").addClass("past")
-    // }
-    // else if (currentTime.isSame(twelvePM)) {
-    //     $("#exampleFormControlTextarea4").addClass("present")
-    // }
-    // // ONE PM
-    // if (currentTime.isBefore(onePM)) {
-    //     $("#exampleFormControlTextarea5").addClass("future")
-    // }
-    // else if (currentTime.isAfter(onePM)) {
-    //     $("#exampleFormControlTextarea5").addClass("past")
-    // }
-    // else if (currentTime.isSame(onePM)) {
-    //     $("#exampleFormControlTextarea5").addClass("present")
-    // }
-    // // TWO PM
-    // if (currentTime.isBefore(twoPM)) {
-    //     $("#exampleFormControlTextarea6").addClass("future")
-    // }
-    // else if (currentTime.isAfter(twoPM)) {
-    //     $("#exampleFormControlTextarea6").addClass("past")
-    // }
-    // else if (currentTime.isSame(twoPM)) {
-    //     $("#exampleFormControlTextarea6").addClass("present")
-    // }
-    // // THREE PM
-    // if (currentTime.isBefore(threePM)) {
-    //     $("#exampleFormControlTextarea7").addClass("future")
-    // }
-    // else if (currentTime.isAfter(threePM)) {
-    //     $("#exampleFormControlTextarea7").addClass("past")
-    // }
-    // else if (currentTime.isSame(threePM)) {
-    //     $("#exampleFormControlTextarea7").addClass("present")
-    // }
-    // // FOUR PM
-    // if (currentTime.isBefore(fourPM)) {
-    //     $("#exampleFormControlTextarea8").addClass("future")
-    // }
-    // else if (currentTime.isAfter(fourPM)) {
-    //     $("#exampleFormControlTextarea8").addClass("past")
-    // }
-    // else if (currentTime.isSame(fourPM)) {
-    //     $("#exampleFormControlTextarea8").addClass("present")
-    // }
-    // // FIVE PM
-    // if (currentTime.isBefore(fivePM)) {
-    //     $("#exampleFormControlTextarea9").addClass("future")
-    // }
-    // else if (currentTime.isAfter(fivePM)) {
-    //     $("#exampleFormControlTextarea9").addClass("past")
-    // }
-    // else if (currentTime.isSame(fivePM)) {
-    //     $("#exampleFormControlTextarea9").addClass("present")
-    // }
-    
-
-    // // if (currentTime.isBefore(nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM)) {
-    // //     console.log("true")
-    // //     $(".form-control").addClass("future");
-    // // }
-    // // else if (currentTime.isAfter(nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM)) {
-    // //     $(".form-control").addClass("past");
-    // // }
-    // // else if (currentTime.isSame(nineAM, tenAM, elevenAM, twelvePM, onePM, twoPM, threePM, fourPM, fivePM)) {
-    // //     $(".form-control").addClass("present");
-    // // }
-       
-
+    }
+    else if (currentTime === three) {
+        console.log("is same");
+        $("#exampleFormControlTextarea7").addClass("present");
+    }
+    // FOUR PM
+    if (currentTime < four) {
+        console.log("is before");
+        $("#exampleFormControlTextarea8").addClass("future");
+      
+    }
+    else if (currentTime > four) {
+        console.log("is after");
+        $("#exampleFormControlTextarea8").addClass("past");
+        
+    }
+    else if (currentTime === four) {
+        console.log("is same");
+        $("#exampleFormControlTextarea8").addClass("present");
+    }
+    // FIVE PM
+    if (currentTime < five) {
+        console.log("is before");
+        $("#exampleFormControlTextarea9").addClass("future");
+      
+    }
+    else if (currentTime > five) {
+        console.log("is after");
+        $("#exampleFormControlTextarea9").addClass("past");
+        
+    }
+    else if (currentTime === five) {
+        console.log("is same");
+        $("#exampleFormControlTextarea9").addClass("present");
+    }
  
-
-
 
 });
 
